@@ -197,7 +197,8 @@ L.GridLayer = L.Layer.extend({
 
 		if (this._zoomAnimated) {
 			this._origScale = map.getZoomScale(zoom) / map.getZoomScale(this._tileZoom);
-			this._origTranslate = map.containerPointToLayerPoint(map.getSize().divideBy(2)).multiplyBy((1 - this._origScale)).round();
+			this._origTranslate = map.containerPointToLayerPoint(map.getSize().divideBy(2))
+				.multiplyBy((1 - this._origScale));
 
 			L.DomUtil.setTransform(this._tileContainer, this._origTranslate, this._origScale);
 		}
@@ -225,7 +226,7 @@ L.GridLayer = L.Layer.extend({
 
 	_resetGrid: function () {
 		var map = this._map,
-		    crs = map.options.crs;
+		    crs = map.options.crs,
 		    tileSize = this._tileSize = this._getTileSize(),
 		    tileZoom = this._tileZoom;
 
@@ -271,8 +272,7 @@ L.GridLayer = L.Layer.extend({
 
 	_addTiles: function (tileRange) {
 		var queue = [],
-		    center = tileRange.getCenter(),
-		    zoom = this._map.getZoom();
+		    center = tileRange.getCenter();
 
 		var j, i, coords;
 
