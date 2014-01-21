@@ -170,8 +170,7 @@ L.GridLayer = L.Layer.extend({
 	},
 
 	_updateLevels: function () {
-		var zoom = this._tileZoom,
-		    level;
+		var zoom = this._tileZoom;
 
 		for (var z in this._levels) {
 			z = parseInt(z, 10);
